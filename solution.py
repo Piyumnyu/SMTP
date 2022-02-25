@@ -33,12 +33,12 @@ if recv2[:3] != '250': #if the data is not received
     #print('250 reply not received from server.!')
 
 # Send RCPT TO command and handle server response.
-rcpt = ('RCPT TO: <priyankamarwal@gmail.com>')
-clientSocket.send(rcpt.encode())
-recv3 = clientSocket.recv(1024).decode()
+ rcpt = ('RCPT TO: <priyankamarwal@gmail.com>')
+ clientSocket.send(rcpt.encode())
+ recv3 = clientSocket.recv(1024).decode()
 #print(recv3)
-if recv3[:3] != '250':  # if the data is not received
-    #print('250 reply not received from server.')
+ if recv3[:3] != '250':  # if the data is not received
+  print('250 reply not received from server.')
 
 # Send DATA command and handle server response.
 data = "DATA rn"
@@ -46,7 +46,7 @@ clientSocket.send(data.encode())
 recv4 = clientSocket.recv(1024).decode()
 #print(recv4)
 if recv4[:3] != '354':  # if the data is not received
-    #print('354 reply not received from server.')
+ print('354 reply not received from server.')
 
 # Send message data.
 subject = "Subject: testing my client\r\n\r\n"

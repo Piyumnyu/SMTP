@@ -25,46 +25,46 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     #    print('250 reply not received from server.')
 
     # Send MAIL FROM command and handle server response.
-mail =('MAIL FROM: <pkm5782@nyu.edu>')
-clientSocket.send(mail.encode())
-recv2 = clientSocket.recv(1024).decode()
-#print(recv2)
-if recv2[:3] != '250': #if the data is not received
-    #print('250 reply not received from server.!')
+    mail =('MAIL FROM: <pkm5782@nyu.edu>')
+    clientSocket.send(mail.encode())
+    recv2 = clientSocket.recv(1024).decode()
+    #print(recv2)
+    if recv2[:3] != '250': #if the data is not received
+     print('250 reply not received from server.!')
 
-# Send RCPT TO command and handle server response.
- rcpt = ('RCPT TO: <priyankamarwal@gmail.com>')
- clientSocket.send(rcpt.encode())
- recv3 = clientSocket.recv(1024).decode()
-#print(recv3)
- if recv3[:3] != '250':  # if the data is not received
-  print('250 reply not received from server.')
+   # Send RCPT TO command and handle server response.
+    rcpt = ('RCPT TO: <priyankamarwal@gmail.com>')
+    clientSocket.send(rcpt.encode())
+    recv3 = clientSocket.recv(1024).decode()
+   #print(recv3)
+    if recv3[:3] != '250':  # if the data is not received
+     print('250 reply not received from server.')
 
-# Send DATA command and handle server response.
-data = "DATA rn"
-clientSocket.send(data.encode())
-recv4 = clientSocket.recv(1024).decode()
-#print(recv4)
-if recv4[:3] != '354':  # if the data is not received
- print('354 reply not received from server.')
+   # Send DATA command and handle server response.
+    data = "DATA \r\n"
+    clientSocket.send(data.encode())
+    recv4 = clientSocket.recv(1024).decode()
+    #print(recv4)
+    if recv4[:3] != '354':  # if the data is not received
+     print('354 reply not received from server.')
 
-# Send message data.
-subject = "Subject: testing my client\r\n\r\n"
-clientSocket.send(subject.encode())
-clientSocket.send(msg.encode())
-clientSocket.send(endmsg.encode())
+   # Send message data.
+    subject = "Subject: testing my client\r\n\r\n"
+    clientSocket.send(subject.encode())
+    clientSocket.send(msg.encode())
+    clientSocket.send(endmsg.encode())
 
-# Message ends with a single period, send message end and handle server response.
-recv_msg = clientSocket.recv(1024)
-#print("Response after sending message body:" + recv_msg.decode())
+   # Message ends with a single period, send message end and handle server response.
+    recv_msg = clientSocket.recv(1024)
+   #print("Response after sending message body:" + recv_msg.decode())
 
-# Send QUIT command and handle server response.
-quitcommand = ('QUIT\r\n')
-clientSocket.send(quitcommand.encode())
-recv5 = clientSocket.recv(1024).decode()
-#print(recv5)
+   # Send QUIT command and handle server response.
+    quitcommand = ('QUIT\r\n')
+    clientSocket.send(quitcommand.encode())
+    recv5 = clientSocket.recv(1024).decode()
+   #print(recv5)
 
-clientSocket.close()
+    clientSocket.close()
 
-if __name__ == '__main__':
-    smtp_client(1025, '127.0.0.1')
+    if __name__ == '__main__':
+     smtp_client(1025, '127.0.0.1')
